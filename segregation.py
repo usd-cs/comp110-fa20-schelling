@@ -178,8 +178,8 @@ def simulate(num_turns, world_width, world_height, num_agents):
         top.update()
         sleep(0.25)
 
-    #print(len(world.open_spots))
     top.mainloop()
 
 if __name__ == "__main__":
-    simulate(30, 10, 10, 75)
+    # Run simulation of a 10x10 world with 75 agents.
+    simulate(20, 10, 10, 75)
