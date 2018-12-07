@@ -155,7 +155,7 @@ def simulate(num_turns, world_width, world_height, num_agents):
 
     # create and randomly place agents. Assume half of each type.
     for i in range(num_agents):
-        if i < num_agents * 0.75:
+        if i < num_agents * 0.5:
             agent_type = "X"
         else:
             agent_type = "O"
