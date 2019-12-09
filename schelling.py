@@ -2,6 +2,8 @@
 Module: schelling
 
 Implementation of Schelling's Model of Segregation
+
+Author: Sat Garcia (sat@sandiego.edu)... and YOU?
 """
 import random
 from tkinter import *
