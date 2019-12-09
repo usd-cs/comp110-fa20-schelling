@@ -146,14 +146,8 @@ def create_window():
     return root
 
 
-def simulate(num_turns, world_width, world_height, num_agents):
-    """ Perform simulation of a world with num_agents for num_turns turns. """
-
-    top = create_window()
-
-    world = World(world_width, world_height, top)
-
-    # create and randomly place agents. Assume half of each type.
+def create_and_place_agents(world, num_agents):
+    """ Creates agents and randomly places them in the world. """
     for i in range(num_agents):
         if i < num_agents * 0.5:
             agent_type = "X"
@@ -163,6 +157,16 @@ def simulate(num_turns, world_width, world_height, num_agents):
         agent_loc = world.get_open_spot()
         agent = Agent(agent_type, agent_loc)
         world.add_agent(agent, agent_loc)
+
+
+def simulate(num_turns, world_width, world_height, num_agents):
+    """ Perform simulation of a world with num_agents for num_turns turns. """
+
+    top = create_window()
+
+    # create world and randomly place agents in the world
+    world = World(world_width, world_height, top)
+    create_and_place_agents(world, num_agents)
 
     # perform all turns of the simulation
     for turn in range(num_turns):
