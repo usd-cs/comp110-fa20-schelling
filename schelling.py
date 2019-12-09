@@ -121,20 +121,6 @@ class World:
                     self.canvas.create_text(50*x+25, 50*y+25, text=val.type,
                                             font=fonty)
 
-    def print_world(self, turn_number):
-        """ Print out the world. """
-        print("\nTurn: " + str(turn_number))
-        for y in range(self.height):
-            for x in range(self.width):
-                val = self.grid[y][x]
-                if val is not None:
-                    print(val.type, end='')
-                else:
-                    print(" ", end='')
-            print()
-        print()
-
-
 def create_window():
     """ Returns a new GUI window. """
     root = Tk()
@@ -170,7 +156,6 @@ def simulate(num_turns, world_width, world_height, num_agents):
 
     # perform all turns of the simulation
     for turn in range(num_turns):
-        #world.print_world(turn)
         world.display_turn()
         for agent in world.agents:
             if not agent.is_satisfied(world):
