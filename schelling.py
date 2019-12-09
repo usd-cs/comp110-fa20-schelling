@@ -101,12 +101,30 @@ class World:
     def move_agent(self, agent, new_x, new_y):
         """ Moves the given agent from their corrent location to their new,
         given location, (new_x, new_y). """
+
         # TODO: Implement this function.
-        # step 1: add agent's current location to open_spots
-        # step 2: update grid so agent is located at new spot
-        # step 3: update grid so agent's old location is cleared (None)
-        # step 4: update agent's location using its move_to method
-        return
+
+        # Step 1: Append agent's current location this world's (i.e. self's)
+        # open_spots. Note: You can use the agent's get_location method as 
+        # part of your solution.
+
+        pass # replace this line with step 1's implementation
+
+        # Step 2: Update this world's grid so agent is located at new spot.
+        # Caution: Make sure you get the order of new_x and new_y right.
+
+        pass # replace this line with step 2's implementation
+
+        # Step 3: Update this world's grid so agent's old location is cleared
+        # (i.e. set to None). Note: agent.x and agent.y are the agent's old
+        # location.
+
+        pass # replace this line with step 3's implementation
+
+        # Step 4: Update agent's location using its move_to method.
+
+        pass # replace this line with step 4's implementation
+
 
     def display_turn(self):
         """ Updates our GUI to show where agents are located now. """
@@ -119,6 +137,7 @@ class World:
                 if val is not None:
                     self.canvas.create_text(50*x+25, 50*y+25, text=val.type,
                                             font=fonty)
+
 
 def create_window():
     """ Returns a new GUI window. """
