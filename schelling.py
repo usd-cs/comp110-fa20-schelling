@@ -8,17 +8,16 @@ from tkinter import *
 from tkinter.font import Font
 from time import sleep
 
-SATISFACTION_LEVEL = 0.5
-
 class Agent:
     """
-    An agent in our world. Has a type and a location.
+    An agent in our world. Has a type, location, and satisfaction level.
     """
 
-    def __init__(self, agent_type, location):
+    def __init__(self, agent_type, location, satisfaction):
         self.x = location[0]
         self.y = location[1]
         self.type = agent_type
+        self.satisfaction_level = satisfaction
 
     def is_satisfied(self, world):
         """
@@ -50,7 +49,7 @@ class Agent:
             percent_similar = 1.0
         else:
             percent_similar = num_same / (num_same + num_diff)
-        return percent_similar >= SATISFACTION_LEVEL
+        return percent_similar >= self.satisfaction_level
 
     def move_to(self, x, y):
         """ Changes the location of this agent. """
@@ -132,7 +131,7 @@ def create_window():
     return root
 
 
-def create_and_place_agents(world, num_agents):
+def create_and_place_agents(world, num_agents, satisfaction_level):
     """ Creates agents and randomly places them in the world. """
     for i in range(num_agents):
         if i < num_agents * 0.5:
@@ -141,18 +140,19 @@ def create_and_place_agents(world, num_agents):
             agent_type = "O"
 
         agent_loc = world.get_open_spot()
-        agent = Agent(agent_type, agent_loc)
+        agent = Agent(agent_type, agent_loc, satisfaction_level)
         world.add_agent(agent, agent_loc)
 
 
-def simulate(num_turns, world_width, world_height, num_agents):
+def simulate(num_turns, world_width, world_height, num_agents,
+             satisfaction_level):
     """ Perform simulation of a world with num_agents for num_turns turns. """
 
     top = create_window()
 
     # create world and randomly place agents in the world
     world = World(world_width, world_height, top)
-    create_and_place_agents(world, num_agents)
+    create_and_place_agents(world, num_agents, satisfaction_level)
 
     # perform all turns of the simulation
     for turn in range(num_turns):
@@ -169,6 +169,19 @@ def simulate(num_turns, world_width, world_height, num_agents):
 
     top.mainloop()
 
+def get_validated_number(prompt, min_val, max_val):
+    """ Returns a user-inputted integer between the min_val and max_val. """
+    val = int(input(prompt))
+
+    while val < min_val or val > max_val:
+        print("Invalid input. Try again.")
+        val = int(input(prompt))
+
+    return val
+
 if __name__ == "__main__":
-    # Run simulation of a 10x10 world with 75 agents.
-    simulate(20, 10, 10, 75)
+    num_agents = get_validated_number("Enter the number of agents (1 - 100): ", 1, 100)
+    level = get_validated_number("Enter satisfaction_level (0 - 100): ", 0, 100)
+
+    # run 10x10 world simulation for 100 turns
+    simulate(100, 10, 10, num_agents, level/100)
