@@ -1,5 +1,5 @@
 """
-Module: segregation
+Module: schelling
 
 Implementation of Schelling's Model of Segregation
 """
