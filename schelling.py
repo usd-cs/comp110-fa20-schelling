@@ -79,6 +79,7 @@ class World:
                            for y in range(height)]
 
         # creates a GUI for us to draw our world on
+        self.window = window
         self.canvas = Canvas(window, bg="green", height=(50*height),
                              width=(50*width), bd=0, relief='sunken',
                              highlightthickness=0)
@@ -128,10 +129,11 @@ class World:
         pass # replace this line with step 4's implementation
 
 
-    def display_turn(self):
+    def display_turn(self, turn_number):
         """ Updates our GUI to show where agents are located now. """
         fonty = Font(family="Times", size=-40)
         self.canvas.delete(ALL) # erase all old drawings
+        self.window.title("Schelling's Segregation Simulator (Turn: " + str(turn_number) + ")")
 
         for y in range(self.height):
             for x in range(self.width):
@@ -144,7 +146,7 @@ class World:
 def create_window():
     """ Returns a new GUI window. """
     root = Tk()
-    root.title("Schelling's Model of Segregation")
+    root.title("Schelling's Segregation Simulator")
 
     # make sure this pops in front of all other windows
     root.lift()
@@ -177,7 +179,7 @@ def simulate(num_turns, world_width, world_height, num_agents,
 
     # perform all turns of the simulation
     for turn in range(num_turns):
-        world.display_turn()
+        world.display_turn(turn)
         for agent in world.agents:
             if not agent.is_satisfied(world):
                 x, y = world.get_open_spot()
@@ -205,4 +207,4 @@ if __name__ == "__main__":
     level = get_validated_number("Enter satisfaction_level (0 - 100): ", 0, 100)
 
     # run 10x10 world simulation for 100 turns
-    simulate(100, 10, 10, num_agents, level/100)
+    simulate(50, 10, 10, num_agents, level/100)
