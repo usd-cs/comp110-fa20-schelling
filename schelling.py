@@ -53,7 +53,7 @@ class Agent:
             percent_similar = num_same / (num_same + num_diff)
         return percent_similar >= self.satisfaction_level
 
-    def move_to(self, x, y):
+    def set_location(self, x, y):
         """ Changes the location of this agent. """
         self.x = x
         self.y = y
@@ -112,7 +112,7 @@ class World:
 
         pass # replace this line with step 1's implementation
 
-        # Step 2: Update this world's grid so agent is located at new spot.
+        # Step 2: Assign agent to new_x, new_y in this world's grid.
         # Caution: Make sure you get the order of new_x and new_y right.
 
         pass # replace this line with step 2's implementation
@@ -123,7 +123,7 @@ class World:
 
         pass # replace this line with step 3's implementation
 
-        # Step 4: Update agent's location using its move_to method.
+        # Step 4: Update agent's location using its set_location method.
 
         pass # replace this line with step 4's implementation
 
